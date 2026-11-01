@@ -2,8 +2,8 @@ import { ApiError } from '@shoplab/ui-kit';
 import { authFetch, emitCartUpdated } from 'host/ui';
 import type { Cart, ProductName } from './types.ts';
 
-// This remote owns the guest cart id kept in localStorage under `cartId`. The catalog remote also writes it and the host merges it on login.
-const GUEST_CART_KEY = 'cartId';
+// This remote owns the guest cart id kept in localStorage under `shoplab.cartId`. The catalog remote also writes it and the host merges it on login.
+const GUEST_CART_KEY = 'shoplab.cartId';
 
 const readGuestId = () => {
   try { return localStorage.getItem(GUEST_CART_KEY); } catch { return null; }

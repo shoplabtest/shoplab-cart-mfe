@@ -18,7 +18,7 @@ beforeEach(() => {
 
 describe('guest cart', () => {
   it('loads with the saved x-cart-id, names the lines and shows totals', async () => {
-    localStorage.setItem('cartId', 'c-1');
+    localStorage.setItem('shoplab.cartId', 'c-1');
     const calls = stubFetch({ 'GET /cart': () => ({ body: cart([line('p-1', 2, 4500), line('p-2', 1, 1200)], 10200) }), ...names });
     render(<Cart />);
     expect(await screen.findByText('Studio Speaker')).toBeTruthy();
@@ -32,7 +32,7 @@ describe('guest cart', () => {
     stubFetch({ 'GET /cart': () => ({ body: cart([], 0) }) });
     render(<Cart />);
     await screen.findByText('Your cart is empty.');
-    expect(localStorage.getItem('cartId')).toBe('c-1');
+    expect(localStorage.getItem('shoplab.cartId')).toBe('c-1');
   });
 
   it('falls back to the product id when the name lookup fails', async () => {
@@ -149,7 +149,7 @@ describe('logged in', () => {
     render(<Cart />);
     expect(await screen.findByText('Studio Speaker')).toBeTruthy();
     expect(authFetch).toHaveBeenCalledWith('/cart', { method: 'GET', body: undefined });
-    expect(localStorage.getItem('cartId')).toBeNull();
+    expect(localStorage.getItem('shoplab.cartId')).toBeNull();
     expect(screen.getByText('Checkout').getAttribute('href')).toBe('/checkout');
   });
 
