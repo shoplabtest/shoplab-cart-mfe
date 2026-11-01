@@ -6,7 +6,7 @@
   "scripts": {
     "start": "vite build && vite preview --port 5002 --strictPort",
     "watch": "vite build --watch",
-    "build": "vite build",
+    "build": "vite build && node scripts/check-expose.mjs Cart",
     "preview": "vite preview --port 5002 --strictPort",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"

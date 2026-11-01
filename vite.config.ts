@@ -18,8 +18,8 @@ export default defineConfig(({ mode }) => {
         shared: ['react', 'react-dom', 'react-router-dom', '@shoplab/ui-kit'],
       })]),
     ],
-    // A remote has no index.html; the exposed module is the build entry.
-    build: { target: 'esnext', minify: false, cssCodeSplit: false, rollupOptions: { input: 'src/Cart.tsx' } },
+    // A remote has no index.html, so Rollup gets a stub entry; the exposed modules come from the federation plugin.
+    build: { target: 'esnext', minify: false, cssCodeSplit: false, rollupOptions: { input: 'src/entry.ts' } },
     preview: { cors: true },
     resolve: {
       // `host/ui` only exists at runtime; tests use a stub.
